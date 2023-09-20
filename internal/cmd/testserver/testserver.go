@@ -128,5 +128,8 @@ func main() {
 
 	defer file.Close()
 
-	file.Write(output)
+	if _, err := file.Write(output); err != nil {
+		die("error writing file: %s", err.Error())
+		return
+	}
 }
