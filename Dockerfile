@@ -9,4 +9,4 @@ COPY ./ ./
 
 RUN go build .
 
-ENTRYPOINT [ "/microgopster" ]
+ENTRYPOINT [ "/app/microgopster" ]
