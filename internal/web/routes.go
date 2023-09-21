@@ -89,6 +89,7 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		ctxlog.Error(ctx, "error creating chart", zap.Error(err))
 		respondError(w, r, http.StatusBadRequest, "unable to create chart; try again")
 		return
 	}
@@ -120,6 +121,7 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 		if im == nil {
 			nc, err := noCover()
 			if err != nil {
+				ctxlog.Error(ctx, "error decoding placeholder cover", zap.Error(err))
 				respondError(w, r, http.StatusInternalServerError, "error creating chart; unable to decode placeholder cover")
 				return
 			}
@@ -147,6 +149,7 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 	var buf bytes.Buffer
 	err = jpeg.Encode(&buf, generated, nil)
 	if err != nil {
+		ctxlog.Error(ctx, "error encoding chart to jpeg", zap.Error(err))
 		respondError(w, r, http.StatusInternalServerError, "error encoding chart to jpeg")
 		return
 	}
