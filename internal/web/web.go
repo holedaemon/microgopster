@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 	"github.com/holedaemon/lastfm"
 	"github.com/zikaeroh/ctxlog"
 	"go.uber.org/zap"
