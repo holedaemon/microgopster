@@ -6,7 +6,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/go-chi/render v1.0.3
 	github.com/holedaemon/gopster v0.0.0-20230919195908-8bc359c20918
-	github.com/holedaemon/lastfm v0.0.0-20230919005730-e0aac0eef13c
+	github.com/holedaemon/lastfm v0.0.0-20230921184551-582666a1670c
 	github.com/zikaeroh/ctxlog v0.0.0-20210526021226-f475ac537d51
 	go.uber.org/zap v1.26.0
 )

@@ -45,6 +45,8 @@ github.com/holedaemon/gopster v0.0.0-20230919195908-8bc359c20918 h1:wRrco4NYUlvr
 github.com/holedaemon/gopster v0.0.0-20230919195908-8bc359c20918/go.mod h1:kbs/L1m8h66KBNx6VlfnZPScIjxbQ9J9p9OQa4vSl2I=
 github.com/holedaemon/lastfm v0.0.0-20230919005730-e0aac0eef13c h1:enUE7AhvL/l/gPQ0SG//dCx4aKPvXo36R4YQj1inZks=
 github.com/holedaemon/lastfm v0.0.0-20230919005730-e0aac0eef13c/go.mod h1:yr9Q9z63RTE4gHEapA2oKNE2ToFeTdmaH/PNsPAhTXg=
+github.com/holedaemon/lastfm v0.0.0-20230921184551-582666a1670c h1:nWg2+tx6gy+1lmHbSun/5O9Y5tQKTjTrWANSiY8TPw8=
+github.com/holedaemon/lastfm v0.0.0-20230921184551-582666a1670c/go.mod h1:yr9Q9z63RTE4gHEapA2oKNE2ToFeTdmaH/PNsPAhTXg=
 github.com/klauspost/compress v1.4.1/go.mod h1:RyIbtBH6LamlWaDj8nUwkbUhJ87Yi3uG0guNDohfE1A=
 github.com/klauspost/cpuid v1.2.0/go.mod h1:Pj4uuM528wm8OyEC2QMXAi2YiTZ96dNQPGgoMS4s3ek=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

@@ -17,7 +17,9 @@ func (s *Server) downloadImage(ctx context.Context, url string) (image.Image, er
 		return nil, err
 	}
 
-	res, err := s.HTTP.Do(req)
+	req.Header.Set("User-Agent", userAgent)
+
+	res, err := s.cli.Do(req)
 	if err != nil {
 		return nil, err
 	}

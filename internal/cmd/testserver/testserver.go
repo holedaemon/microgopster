@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/holedaemon/lastfm"
 	"github.com/holedaemon/microgopster/internal/web"
 	"github.com/zikaeroh/ctxlog"
 	"go.uber.org/zap"
@@ -41,12 +40,6 @@ func main() {
 		period = "overall"
 	}
 
-	lfm, err := lastfm.New(apiKey)
-	if err != nil {
-		die("error creating lastfm client: %s", err.Error())
-		return
-	}
-
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -60,7 +53,7 @@ func main() {
 
 	srv, err := web.New(
 		web.WithAddr(addr),
-		web.WithLastFM(lfm),
+		web.WithAPIKey(apiKey),
 	)
 	if err != nil {
 		die("error creating server: %s", err.Error())

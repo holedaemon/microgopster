@@ -4,7 +4,6 @@ import (
 	"context"
 	"os"
 
-	"github.com/holedaemon/lastfm"
 	"github.com/holedaemon/microgopster/internal/web"
 	"github.com/zikaeroh/ctxlog"
 	"go.uber.org/zap"
@@ -25,14 +24,9 @@ func main() {
 		logger.Fatal("$MICROGOPSTER_ADDR is not set")
 	}
 
-	lfm, err := lastfm.New(apiKey)
-	if err != nil {
-		logger.Fatal("error creating last.fm client", zap.Error(err))
-	}
-
 	srv, err := web.New(
 		web.WithAddr(addr),
-		web.WithLastFM(lfm),
+		web.WithAPIKey(apiKey),
 	)
 	if err != nil {
 		logger.Fatal("error creating server", zap.Error(err))

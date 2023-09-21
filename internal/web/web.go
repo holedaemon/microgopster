@@ -28,28 +28,44 @@ func init() {
 	}
 }
 
+const (
+	version   = "0"
+	userAgent = "microgopster/v" + version + " (https://github.com/holedaemon/microgopster)"
+)
+
 type Server struct {
-	Addr   string
-	HTTP   *http.Client
-	LastFM *lastfm.Client
+	addr   string
+	apiKey string
+
+	cli    *http.Client
+	lastfm *lastfm.Client
 }
 
 func New(opts ...Option) (*Server, error) {
-	s := &Server{}
+	s := &Server{
+		cli: &http.Client{
+			Timeout: time.Second * 10,
+		},
+	}
 
 	for _, o := range opts {
 		o(s)
 	}
 
-	if s.HTTP == nil {
-		s.HTTP = &http.Client{
-			Timeout: time.Second * 10,
-		}
+	if s.apiKey == "" {
+		return nil, fmt.Errorf("web: missing last.fm api key")
 	}
 
-	if s.LastFM == nil {
-		return nil, fmt.Errorf("web: missing lastfm client")
+	if s.addr == "" {
+		return nil, fmt.Errorf("web: missing addr")
 	}
+
+	lfm, err := lastfm.New(s.apiKey, lastfm.UserAgent(userAgent))
+	if err != nil {
+		return nil, err
+	}
+
+	s.lastfm = lfm
 
 	return s, nil
 }
@@ -69,7 +85,7 @@ func (s *Server) Run(ctx context.Context) error {
 	})
 
 	srv := &http.Server{
-		Addr:        s.Addr,
+		Addr:        s.addr,
 		Handler:     r,
 		BaseContext: func(l net.Listener) context.Context { return ctx },
 	}

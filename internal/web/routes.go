@@ -56,7 +56,7 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 	default:
 	}
 
-	albums, err := s.LastFM.UserTopAlbums(ctx, &lastfm.UserQuery{
+	albums, err := s.lastfm.UserTopAlbums(ctx, &lastfm.UserQuery{
 		User:   b.User,
 		Limit:  9,
 		Page:   1,
