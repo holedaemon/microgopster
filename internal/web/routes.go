@@ -50,6 +50,12 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 		b.Period = "overall"
 	}
 
+	switch b.Gap {
+	case 0:
+		b.Gap = 20
+	default:
+	}
+
 	albums, err := s.LastFM.UserTopAlbums(ctx, &lastfm.UserQuery{
 		User:   b.User,
 		Limit:  9,
