@@ -9,6 +9,4 @@ COPY ./ ./
 
 RUN go build .
 
-FROM gcr.io/distroless/base:nonroot
-COPY --from=builder /app/microgopster /microgopster
 ENTRYPOINT [ "/microgopster" ]
