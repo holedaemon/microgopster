@@ -7,6 +7,9 @@ RUN go mod download
 
 COPY ./ ./
 
-RUN go build .
+RUN go build -o microgopster
 
-ENTRYPOINT [ "/app/microgopster" ]
+FROM gcr.io/distroless/base-debian12:nonroot
+COPY --from=builder /app/microgopster /microgopster
+
+ENTRYPOINT [ "/microgopster" ]
