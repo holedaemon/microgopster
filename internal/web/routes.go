@@ -69,7 +69,7 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(albums.Albums) == 0 {
-		respond(w, r, http.StatusOK, &GeneratedResponse{Image: ""})
+		respondError(w, r, http.StatusBadRequest, "not enough albums to make a chart")
 		return
 	}
 
