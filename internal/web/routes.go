@@ -115,12 +115,10 @@ func (s *Server) index(w http.ResponseWriter, r *http.Request) {
 			if url != "" {
 				di, err := s.downloadImage(ctx, url)
 				if err != nil {
-					ctxlog.Error(ctx, "error downloading album cover", zap.Error(err), zap.String("album", a.Name))
-					respondError(w, r, http.StatusInternalServerError, "error downloading cover image")
-					return
+					ctxlog.Error(ctx, "error downloading album cover", zap.Error(err), zap.String("album", a.Name), zap.String("url", url))
+				} else {
+					im = di
 				}
-
-				im = di
 			}
 		}
 
