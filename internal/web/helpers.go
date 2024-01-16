@@ -3,6 +3,7 @@ package web
 import (
 	"context"
 	"errors"
+	"fmt"
 	"image"
 	"net/http"
 
@@ -28,7 +29,7 @@ func (s *Server) downloadImage(ctx context.Context, url string) (image.Image, er
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errNonOK
+		return nil, fmt.Errorf("%w: %d", errNonOK, res.StatusCode)
 	}
 
 	m, _, err := image.Decode(res.Body)
